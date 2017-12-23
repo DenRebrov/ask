@@ -16,8 +16,8 @@
     </div>
   </div>
 
-  <div class="text-left">
-    <%= link_to "Хэштеги: #{question.hashtag.delete('[]",')}", questions_hashtags_page_path(question) %>
+  <div class="text-small">
+    <%= link_to question.hashtag.delete('[]",'), questions_hashtags_page_path(question) %>
   </div>
 
   <% if question.user == current_user %>
