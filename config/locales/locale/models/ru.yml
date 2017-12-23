@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    models:
+      user: Пользователь
+    attributes:
+      profile:
+        username: "Отображаемое имя"
+        email: "Почта"

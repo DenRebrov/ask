@@ -1,0 +1,19 @@
+<div class="content-wrapper buffer-both text-center">
+  <div class="buffer-both">
+    <h1 class="title-medium">Вопросы с похожими хэштегами</h1>
+  </div>
+
+  <div class="users-list-item">
+    <% questions_with_hashtags = [] %>
+
+    <% @questions.each do |q| %>
+      <% if q.text.include?(q.hashtag.delete('[]",')) %>
+        <% questions_with_hashtags << q.text %>
+      <% end %>
+    <% end %>
+
+    <%= questions_with_hashtags %>
+    <%# questions_with_hashtags = [] %>
+
+  </div>
+</div>

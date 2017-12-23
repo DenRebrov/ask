@@ -1,0 +1,9 @@
+.button {
+    background: green;
+    text-decoration: none;
+    border: 10px;
+    color: white;
+    padding: .7em 1.5em;
+    font-family: Arial, sans-serif;
+}
+

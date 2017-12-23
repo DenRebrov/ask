@@ -1,0 +1,42 @@
+<div class="question">
+  <div class="question-content">
+    <div class="question-text text-lead">
+      <%= question.text %>
+    </div>
+
+
+    <% if question.answer.present? %>
+      <div class="question-answer text-lead">
+        <%= question.answer if question.answer.present? %>
+      </div>
+    <% end %>
+
+    <div class="question-date">
+      <%= l(question.created_at, format: :short) %>
+    </div>
+  </div>
+
+  <div class="text-left">
+    <%= link_to "Хэштеги: #{question.hashtag.delete('[]",')}", questions_hashtags_page_path(question) %>
+  </div>
+
+  <% if question.user == current_user %>
+      <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
+      <%# овтета на письмо, иначе — карандашик %>
+      <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
+
+      <div class="question-actions">
+        <%= link_to fa_icon(edit_icon), edit_question_path(question) %>
+        <%= link_to fa_icon('trash-o'), question_path(question), method: :delete, data: {confirm: 'Точно удалить вопрос?'} %>
+      </div>
+  <% end %>
+
+  <div class="text-right">
+    <% if question.author_id.class != NilClass %>
+      <% find_question_author = User.find_by(id: question.author_id) %>
+      <%= link_to "Вопрос задан пользователем: @#{find_question_author.name}", user_path(find_question_author) %>
+    <% else %>
+      <%= link_to "Вопрос задан анонимно", user_path(@user) %>
+    <% end %>
+  </div>
+</div>
