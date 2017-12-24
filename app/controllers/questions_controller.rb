@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
   def questions_hashtags_page
     @questions = Question.all
 
+    @question = Question.where.not(text: nil)
+
   end
 
   def create
@@ -54,7 +56,7 @@ class QuestionsController < ApplicationController
     if current_user.present? && params[:question][:user_id].to_i == current_user.id
       params.require(:question).permit(:user_id, :text, :answer, :hashtag)
     else
-      params.require(:question).permit(:user_id, :text)
+      params.require(:question).permit(:user_id, :text, :hashtag)
     end
   end
 end

@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+
+    @questions = Question.all
+
+    @question_hashtags = Question.find_by(params[:hashtag]) #== '["#робот"]'
   end
 
   def new

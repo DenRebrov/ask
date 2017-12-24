@@ -13,3 +13,17 @@
     </div>
   <% end %>
 </div>
+
+<div class="content-wrapper buffer-both text-center">
+  <h1 class="title-medium">Наши хэштеги</h1>
+
+  <% questions_with_hashtags = [] %>
+
+  <% @questions.each do |q| %>
+      <% questions_with_hashtags << q.hashtag.delete('[]",') %>
+  <% end %>
+
+  <div class="text-hashtag">
+    <%= questions_with_hashtags.join(' ') %>
+  </div>
+</div>

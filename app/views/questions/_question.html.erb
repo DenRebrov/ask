@@ -4,7 +4,6 @@
       <%= question.text %>
     </div>
 
-
     <% if question.answer.present? %>
       <div class="question-answer text-lead">
         <%= question.answer if question.answer.present? %>
@@ -16,7 +15,7 @@
     </div>
   </div>
 
-  <div class="text-small">
+  <div class="text-small text-blue">
     <%= link_to question.hashtag.delete('[]",'), questions_hashtags_page_path(question) %>
   </div>
 

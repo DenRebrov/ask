@@ -23,6 +23,17 @@ a {
   margin-bottom: 6px;
 }
 
+
+.text-blue {
+    color: dodgerblue;
+}
+
+.text-hashtag {
+    font-size: 20px;
+    font-style: italic;
+    color: dodgerblue;
+}
+
 .text-lead {
   font-size: 20px;
   line-height: 28px;
