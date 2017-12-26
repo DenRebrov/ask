@@ -16,7 +16,8 @@
   </div>
 
   <div class="text-small text-blue">
-    <%= link_to question.hashtag.delete('[]",'), questions_hashtags_page_path(question) %>
+    <%= link_to question.hashtag.downcase.delete('[]",'), questions_hashtags_page_path(question) %>
+    <%= link_to question.hashtag.downcase.delete('[]",'), questions_hashtags_page_path(question) if question.answer.present? %>
   </div>
 
   <% if question.user == current_user %>

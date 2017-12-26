@@ -20,10 +20,10 @@
   <% questions_with_hashtags = [] %>
 
   <% @questions.each do |q| %>
-      <% questions_with_hashtags << q.hashtag.delete('[]",') %>
+      <% questions_with_hashtags << q.hashtag.downcase.delete('[]",') %>
   <% end %>
 
   <div class="text-hashtag">
-    <%= questions_with_hashtags.join(' ') %>
+    <%= questions_with_hashtags.uniq.join(' ') %>
   </div>
 </div>

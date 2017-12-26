@@ -7,8 +7,6 @@ class UsersController < ApplicationController
     @users = User.all
 
     @questions = Question.all
-
-    @question_hashtags = Question.find_by(params[:hashtag]) #== '["#робот"]'
   end
 
   def new

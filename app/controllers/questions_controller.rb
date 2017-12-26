@@ -10,9 +10,7 @@ class QuestionsController < ApplicationController
 
   def questions_hashtags_page
     @questions = Question.all
-
-    @question = Question.where.not(text: nil)
-
+    #@question = Question.find_by(params[:id])
   end
 
   def create
@@ -21,7 +19,7 @@ class QuestionsController < ApplicationController
     current_user.present? ? @question.author = current_user : @question.author = nil
 
     if verify_recaptcha(model: @question) && @question.save
-      redirect_to user_path(@question.user), notice: "Вопрос задан. #{}"
+      redirect_to user_path(@question.user), notice: "Вопрос задан."
     else
       render :edit
     end

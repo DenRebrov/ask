@@ -7,17 +7,22 @@
     <% questions_with_hashtags = [] %>
 
     <% @questions.each do |q| %>
-      <% if q.hashtag == nil %>
+      <% if q.hashtag =~ (/#\S+/) %>
         <% questions_with_hashtags << q.text %>
 
       <% end %>
-        <% questions_with_hashtags << q.hashtag %>
     <% end %>
 
 
+    <%#= @question.text %>
 
-    <%#= @question.text if @question.text.include?(@question.hashtag.delete('[]",')) %>
-    <%= questions_with_hashtags %>
+
+    <div class="question-text text-lead">
+      <% questions_with_hashtags.each do |q| %>
+        <%= q %>
+      <% end %>
+    </div>
+
 
   </div>
 </div>
