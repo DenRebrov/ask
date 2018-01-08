@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
 
-  root 'users#index'
+  get 'hashtags/show'
 
-  get 'questions_hashtags_page', to: 'questions#questions_hashtags_page'
+  root 'users#index'
 
   resources :users
   resource :session, only: [:new, :create, :destroy]
   resources :questions, except: [:show, :new, :index]
-
-  #get 'sign_up' => 'users#new'
-  #get 'log_out' => 'sessions#destroy'
-  #get 'log_in' => 'sessions#new'
+  resources :hashtags, only: [:show]
 end

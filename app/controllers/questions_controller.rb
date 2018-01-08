@@ -8,11 +8,6 @@ class QuestionsController < ApplicationController
   def edit
   end
 
-  def questions_hashtags_page
-    @questions = Question.all
-    #@question = Question.find_by(params[:id])
-  end
-
   def create
     @question = Question.new(question_params)
 

@@ -1,0 +1,23 @@
+<div class="content-wrapper buffer-both text-center">
+  <div class="buffer-both">
+    <h1 class="title-medium">Вопросы по хэштегу: <%= @hashtag.name.delete('[]",') +
+                                                         (@hashtag.answer.present? ? @hashtag.answer.delete('[]",') : '') %></h1>
+  </div>
+
+  <% questions_with_similar_hashtags = [] %>
+
+  <div class="buffer-both">
+      <% @all_questions.each do |question| %>
+        <% questions_with_similar_hashtags << question if question.text.include?(@hashtag.answer.present? ?
+                                                                                     @hashtag.answer.delete('[]",') :
+                                                                                     @hashtag.name.delete('[]",')) %>
+
+        <% questions_with_similar_hashtags << question if question.answer.present? &&
+            question.answer.include?(@hashtag.answer.present? ?
+                                         @hashtag.answer.delete('[]",') :
+                                         @hashtag.name.delete('[]",')) %>
+    <% end %>
+  </div>
+</div>
+
+<%= render partial: 'questions/question', collection: questions_with_similar_hashtags %>

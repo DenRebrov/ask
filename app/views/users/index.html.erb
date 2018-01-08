@@ -17,13 +17,16 @@
 <div class="content-wrapper buffer-both text-center">
   <h1 class="title-medium">Наши хэштеги</h1>
 
-  <% questions_with_hashtags = [] %>
+  <% all_hashtags = [] %>
 
-  <% @questions.each do |q| %>
-      <% questions_with_hashtags << q.hashtag.downcase.delete('[]",') %>
+  <% @all_questions.each do |q| %>
+    <% q.hashtags.each do |h| %>
+      <% all_hashtags << h %>
+    <% end %>
   <% end %>
 
   <div class="text-hashtag">
-    <%= questions_with_hashtags.uniq.join(' ') %>
+    <%= render partial: 'hashtags/hashtag', collection: all_hashtags %>
   </div>
+
 </div>
