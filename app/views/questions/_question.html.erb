@@ -17,14 +17,7 @@
 
   <div class="text-small text-blue">
     <% question.hashtags.each do |hashtag| %>
-      <%#= render partial: 'hashtags/hashtag', collection: question.hashtags, as: :hashtag %>
-      <%= link_to hashtag.name.delete('[]",'), hashtag_path(hashtag) %>
-    <% end %>
-  </div>
-  <div class="text-small text-blue">
-    <% question.hashtags.each do |hashtag| %>
-      <%#= render partial: 'hashtags/hashtag', collection: question.hashtags, as: :hashtag %>
-      <%= link_to hashtag.answer.delete('[]",'), hashtag_path(hashtag) if hashtag.answer.present? %>
+      <%= link_to hashtag.name, hashtag_path(hashtag) %>
     <% end %>
   </div>
 

@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108123743) do
+ActiveRecord::Schema.define(version: 20180109113846) do
 
   create_table "hashtags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "answer"
   end
 
   create_table "hashtags_questions", force: :cascade do |t|

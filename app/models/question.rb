@@ -10,15 +10,10 @@ class Question < ApplicationRecord
   before_save :find_hashtags
 
   def find_hashtags
-    question_hashtag_name = self.text.scan(/#\S+/).map(&:downcase).uniq
-    self.answer.present? ? answer_hashtag_name = self.answer.scan(/#\S+/).map(&:downcase).uniq : answer_hashtag_name = nil
+    scanning_hashtags = "#{text} #{answer}".scan(/#\S+/).map(&:downcase)
 
-    @hashtag = Hashtag.new(name: question_hashtag_name, answer: answer_hashtag_name)
-    self.hashtags << @hashtag
-
-    #self.hashtags.each do |hash|
-    #  hash.name.delete('[]",')
-    #  hash.answer.delete('[]",') if hash.answer.present?
-    #end
+    scanning_hashtags.each do |h|
+      self.hashtags << Hashtag.find_or_create_by(name: h)
+    end
   end
 end

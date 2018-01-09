@@ -22,11 +22,13 @@
   <% @all_questions.each do |q| %>
     <% q.hashtags.each do |h| %>
       <% all_hashtags << h %>
+      <% all_hashtags.uniq! %>
     <% end %>
   <% end %>
 
   <div class="text-hashtag">
-    <%= render partial: 'hashtags/hashtag', collection: all_hashtags %>
+    <% all_hashtags.each do |h| %>
+      <%= link_to h.name, hashtag_path(h) %>
+    <% end %>
   </div>
-
 </div>
