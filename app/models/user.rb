@@ -1,7 +1,6 @@
 require 'openssl'
 
 class User < ApplicationRecord
-
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
@@ -9,7 +8,6 @@ class User < ApplicationRecord
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
-
 
   validates :head_color, format: { with: /\A#[a-f0-9]{6}+\z/ }
   validates :email, format: { with: /\A[a-zA-Z0-9._+]+@[a-zA-Zа-яА-Я._+]+\.[a-zа-я]+\z/, message: "it is not email" }

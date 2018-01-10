@@ -4,9 +4,11 @@
   </div>
 
   <% @users.each do |user| %>
-    <%= user.username %>
-
     <div class="users-list-item">
+      <div class="user-title">
+        <%= user.username %>
+      </div>
+
       <div class="user-image-div user-image-div-small">
         <%= link_to image_tag(user_avatar(user), class: 'user-image'), user_path(user) %>
       </div>
@@ -16,7 +18,6 @@
 
 <div class="content-wrapper buffer-both text-center">
   <h1 class="title-medium">Наши хэштеги</h1>
-
   <% all_hashtags = [] %>
 
   <% @all_questions.each do |q| %>

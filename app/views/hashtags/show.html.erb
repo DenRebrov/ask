@@ -1,16 +1,32 @@
 <div class="content-wrapper buffer-both text-center">
+  <% @users.each do |user| %>
+    <% if user.questions.present? %>
+      <div class="users-list-item">
+        <div class="user-title">
+          <%= user.username %>
+        </div>
+
+        <div class="user-image-div user-image-div-small">
+          <%= link_to image_tag(user_avatar(user), class: 'user-image'), user_path(user) %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="content-wrapper buffer-both text-center">
   <div class="buffer-both">
     <h1 class="title-medium">Вопросы по хэштегу: <%= @hashtag.name %></h1>
   </div>
+</div>
 
-  <div class="buffer-both">
-    <% questions_with_similar_hashtags = [] %>
+<div class="buffer-both">
+  <% questions_with_similar_hashtags = [] %>
 
-      <% @all_questions.each do |question| %>
-        <% questions_with_similar_hashtags << question if question.text.capitalize.include?(@hashtag.name) %>
-        <% questions_with_similar_hashtags << question if question.answer.present? && question.answer.include?(@hashtag.name) %>
-    <% end %>
-  </div>
+  <% @all_questions.each do |question| %>
+    <% questions_with_similar_hashtags << question if question.text.capitalize.include?(@hashtag.name) %>
+    <% questions_with_similar_hashtags << question if question.answer.present? && question.answer.capitalize.include?(@hashtag.name) %>
+  <% end %>
 </div>
 
 <%= render partial: 'questions/question', collection: questions_with_similar_hashtags %>
