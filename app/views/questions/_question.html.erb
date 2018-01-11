@@ -35,9 +35,13 @@
   <div class="text-right">
     <% if question.author_id.class != NilClass %>
       <% find_question_author = User.find_by(id: question.author_id) %>
-      <%= link_to "Вопрос задан пользователем: @#{find_question_author.name}", user_path(find_question_author) %>
+      <%= link_to "Автор вопроса: @#{find_question_author.name}", user_path(find_question_author) %>
     <% else %>
-      <%= link_to "Вопрос задан анонимно", user_path(@user) %>
+      <p>Вопрос задан анонимно</p>
     <% end %>
+  </div>
+
+  <div class="text-right">
+    <%= link_to "Задан пользователю: @#{question.user.name}", user_path(question.user) %>
   </div>
 </div>
