@@ -7,19 +7,12 @@ class Question < ApplicationRecord
   validates :text, :user, presence: true
   validates :text, length: { maximum: 255 }
 
-  before_create :find_hashtags
+  before_save :find_hashtags
 
   def find_hashtags
+    self.hashtags = []
     hashtags_array = "#{text} #{answer}".scan(/#\S[a-zA-Zа-яА-Я_]+[^0-9\W_]+/).map(&:downcase).uniq
     hashtags_array.each { |h| self.hashtags << Hashtag.find_or_create_by(name: h) }
-  end
-
-  before_update :update_hashtags
-
-  def update_hashtags
-    hashtags_array = "#{text} #{answer}".scan(/#\S[a-zA-Zа-яА-Я_]+[^0-9\W_]+/).map(&:downcase).uniq
-    hashtags_array.each { |h| self.hashtags << Hashtag.find_or_create_by(name: h) }
-
 
     self.hashtags.each { |h| h.destroy! unless hashtags_array.include?(h.name) }
   end
