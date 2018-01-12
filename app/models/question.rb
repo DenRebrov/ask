@@ -13,7 +13,5 @@ class Question < ApplicationRecord
     self.hashtags = []
     hashtags_array = "#{text} #{answer}".scan(/#[а-яА-Яa-zA-z-]+[^0-9.<> ?!@#$%^&*()_]+/).map(&:downcase).uniq
     hashtags_array.each { |h| self.hashtags << Hashtag.find_or_create_by(name: h) }
-
-    self.hashtags.each { |h| h.destroy! unless hashtags_array.include?(h.name) }
   end
 end
