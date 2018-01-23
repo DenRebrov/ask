@@ -1,13 +1,17 @@
+<%# Страница пользователя %>
+
 <div class="user-header text-center" style="background: <%= @user.head_color %> ">
 
   <h1 class="title-medium">
     <%= @user.name %>
   </h1>
 
+  <%# Ссылка на редактирование профиля %>
   <div class="buffer-both">
     <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
   </div>
 
+  <%# Ссылка на удаление профиля %>
   <div class="buffer-both">
     <%= link_to 'Удалить профиль', user_path(@user), method: :delete, data: {confirm: 'Точно удалить профиль?'} if current_user == @user %>
   </div>
