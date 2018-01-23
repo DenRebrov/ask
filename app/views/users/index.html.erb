@@ -1,8 +1,11 @@
+<%# Главная страница приложения %>
+
 <div class="content-wrapper buffer-both text-center">
   <div class="buffer-both">
     <h1 class="title-medium">Наши пользователи</h1>
   </div>
 
+  <%# Выводим ссылки-иконки всех пользователей и их имена %>
   <% @users.each do |user| %>
     <div class="users-list-item">
       <div class="user-title">
@@ -20,6 +23,7 @@
   <h1 class="title-medium">Наши хэштеги</h1>
   <% all_hashtags = [] %>
 
+  <%# Пробегаемся по всем вопросам и собираем в массив all_hashtags все хэштеги из вопросов %>
   <% @all_questions.each do |q| %>
     <% q.hashtags.each do |h| %>
       <% all_hashtags << h %>
@@ -27,6 +31,7 @@
     <% end %>
   <% end %>
 
+  <%# Выводим ссылки всех хэштегов %>
   <div class="text-hashtag">
     <% all_hashtags.each do |h| %>
       <%= link_to h.name, hashtag_path(h) %>
