@@ -1,32 +1,37 @@
 <div class="content-wrapper buffer-both text-center">
+  <%# Выводим всех пользователей %>
   <% @users.each do |user| %>
-    <% if user.questions.present? %>
-      <div class="users-list-item">
-        <div class="user-title">
-          <%= user.username %>
-        </div>
-
-        <div class="user-image-div user-image-div-small">
-          <%= link_to image_tag(user_avatar(user), class: 'user-image'), user_path(user) %>
-        </div>
+    <div class="users-list-item">
+      <div class="user-title">
+        <%= user.username %>
       </div>
-    <% end %>
+
+      <div class="user-image-div user-image-div-small">
+        <%= link_to image_tag(user_avatar(user), class: 'user-image'), user_path(user) %>
+      </div>
+    </div>
   <% end %>
 </div>
 
 <div class="content-wrapper buffer-both text-center">
   <div class="buffer-both">
+    <%# Выводим имя хэштега на который нас редиректнуло %>
     <h1 class="title-medium">Вопросы по хэштегу: <%= @hashtag.name %></h1>
   </div>
 </div>
 
 <div class="buffer-both">
+  <%# Создаем пустой массив, в который будем складывать вопросы с хэштегами %>
   <% questions_with_similar_hashtags = [] %>
 
+  <%# Пробегаемся по всем вопросам и если в тексте/ответе вопроса уже содержится хэштег с таким же именем,
+   то такой вопрос складываем в наш массив с вопросами %>
   <% @all_questions.each do |question| %>
     <% questions_with_similar_hashtags << question if question.text.capitalize.include?(@hashtag.name) %>
     <% questions_with_similar_hashtags << question if question.answer.present? && question.answer.capitalize.include?(@hashtag.name) %>
   <% end %>
 </div>
 
+<%# Рендерим паршал questions/question и выводим в коллекцию наших вопросов с хэштегами
+из массива questions_with_similar_hashtags %>
 <%= render partial: 'questions/question', collection: questions_with_similar_hashtags %>
