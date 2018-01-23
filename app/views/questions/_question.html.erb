@@ -4,6 +4,7 @@
       <%= question.text %>
     </div>
 
+    <!-- Если вопрос имеет ответ, показать его -->
     <% if question.answer.present? %>
       <div class="question-answer text-lead">
         <%= question.answer if question.answer.present? %>
@@ -11,11 +12,13 @@
     <% end %>
 
     <div class="question-date">
+      <!-- Локализованный вывод даты вопроса в коротком формате -->
       <%= l(question.created_at, format: :short) %>
     </div>
   </div>
 
   <div class="text-small text-blue">
+    <!-- Выводим ссылки с хэштегами после вопроса -->
     <% question.hashtags.each do |hashtag| %>
       <%= link_to hashtag.name, hashtag_path(hashtag) %>
     <% end %>
@@ -32,6 +35,7 @@
       </div>
   <% end %>
 
+  <%# Выводим автора вопроса %>
   <div class="text-right">
     <% if question.author_id.class != NilClass %>
       <% find_question_author = User.find_by(id: question.author_id) %>
@@ -41,6 +45,7 @@
     <% end %>
   </div>
 
+  <%# Определяем кому задан вопрос %>
   <div class="text-right">
     <%= link_to "Задан пользователю: @#{question.user.name}", user_path(question.user) %>
   </div>
