@@ -1,4 +1,9 @@
+# В этом файле мы можем писать вспомогательные методы (хелперы) для шаблонов,
+# (представлений, вьюх) нашего приложения
+
 module ApplicationHelper
+  # Этот метод возвращает ссылку на автарку пользователя, если она у него есть
+  # или ссылку на дефолтную аватарку, которая лежит в app/assets/images
   def user_avatar(user)
     if user.avatar_url.present?
       user.avatar_url
@@ -7,6 +12,7 @@ module ApplicationHelper
     end
   end
 
+  # метод склонения, который позволяет склонять слова в зависимости от их множественного или единственного числа
   def decline(number_question, vopros, voprosa, voprosov)
     remainder = number_question % 10
     remainder100 = number_question % 100
